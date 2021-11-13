@@ -2,6 +2,7 @@ package com.taktakci.personality.service;
 
 import com.taktakci.personality.repository.QuestionRepository;
 import com.taktakci.personality.repository.entity.Question;
+import com.taktakci.personality.service.exceptions.BusinessException;
 import com.taktakci.personality.service.mapper.QuestionServiceMapper;
 import com.taktakci.personality.service.model.QuestionDto;
 import org.junit.jupiter.api.Assertions;
@@ -62,10 +63,10 @@ class QuestionServiceTest {
         when(questionRepository.findById(5))
                 .thenReturn(optionalQuestion);
 
-        RuntimeException runtimeException = Assertions.assertThrows(RuntimeException.class,
+        BusinessException businessException = Assertions.assertThrows(BusinessException.class,
                 () -> questionService.getQuestionById(5));
 
-        Assertions.assertEquals("Question Not Found for id 5", runtimeException.getMessage());
+        Assertions.assertEquals("Question Not Found for id 5", businessException.getMessage());
     }
 
     @Test

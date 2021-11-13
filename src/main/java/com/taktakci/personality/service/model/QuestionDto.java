@@ -14,5 +14,5 @@ public class QuestionDto {
     String questionType;
     List<String> options;
     String expectedAnswer;
-    String conditionalQuestionId;
+    Integer conditionalQuestionId;
 }

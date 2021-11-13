@@ -2,6 +2,7 @@ package com.taktakci.personality.service;
 
 import com.taktakci.personality.repository.QuestionRepository;
 import com.taktakci.personality.repository.entity.Question;
+import com.taktakci.personality.service.exceptions.BusinessException;
 import com.taktakci.personality.service.mapper.QuestionServiceMapper;
 import com.taktakci.personality.service.model.QuestionDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class QuestionService {
     public QuestionDto getQuestionById(int questionId) {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         return questionServiceMapper.toQuestionDto(
-                optionalQuestion.orElseThrow(() -> new RuntimeException("Question Not Found for id " + questionId)));
+                optionalQuestion.orElseThrow(() -> new BusinessException("Question Not Found for id " + questionId)));
     }
 
     public List<String> getQuestionCategories() {
